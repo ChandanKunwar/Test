@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>CMK API</title>
+  <script>
+    function submitForm() {
+      var vmName = document.getElementById("vmName").value;
+      var instanceName = document.getElementById("instanceName").value;
+      var vmID = document.getElementById("vmID").value;
+      
+      // You can modify the scriptPath variable with the appropriate path to your run.sh script
+      var scriptPath = "/path/to/run.sh";
+      
+      // Construct the command to execute the script with the input parameters
+      var command = scriptPath + " " + vmName + " " + instanceName + " " + vmID;
+      
+      // Send the command to the remote host (replace HOSTNAME with the actual remote host)
+      var remoteCommand = "ssh username@hostname '" + command + "'";
+      
+      // Display the command for testing purposes
+      alert("Command to execute: " + remoteCommand);
+      
+      // Uncomment the line below to actually execute the command on the remote host
+      // window.location.href = remoteCommand;
+    }
+  </script>
+</head>
 <body>
-
-<h1>this is for test only.</h1>
-
-<p>Master branch</p>
-  <p>subendra</p>
-  <p>yubraj</p>
-
-
+  <h1>CMK API</h1>
+  <form>
+    <label for="vmName">VM Name:</label>
+    <input type="text" id="vmName" name="vmName" required><br><br>
+    
+    <label for="instanceName">Instance Name:</label>
+    <input type="text" id="instanceName" name="instanceName" required><br><br>
+    
+    <label for="vmID">VM ID:</label>
+    <input type="text" id="vmID" name="vmID" required><br><br>
+    
+    <input type="button" value="Submit" onclick="submitForm()">
+  </form>
 </body>
 </html>
-
